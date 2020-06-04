@@ -36,7 +36,9 @@ require(['views/main', 'views/cars', 'views/marks', 'util/resourceProxy'],
                         view: 'toolbar',
                         cols: [
                             buildButton('Home', ''),
-                            buildButton('Marks', 'marks')
+                            buildButton('Marks', 'marks'),
+                            buildButton('Cars', 'cars')
+
                         ]
                     },
                     {

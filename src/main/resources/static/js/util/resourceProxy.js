@@ -8,9 +8,16 @@ define(function () {
             webix.extend(this, webix.proxy.rest);
         },
         load: function (view, params) {
-            return ajax.get(view.config.url.source).then(function (value) {
-                return value.json().content
-            });
+            var args = "?page=" + (params ? params.start / view.config.datafetch : 0)
+                + "&size=" + view.config.datafetch;
+            return ajax.get(view.config.url.source + args)
+                .then(function (value) {
+                    return {
+                        data: value.json().content,
+                        pos: value.json().number * view.config.datafetch,
+                        total_count: value.json().totalElements
+                    }
+                });
         },
         save: function (view, params) {
             var id = params.id
