@@ -18,24 +18,24 @@ define(function () {
                 },
                 {
                     id: tableId,
-                    view: "datatable",
+                    view: 'datatable',
                     autoheight: true,
                     autowidth: true,
                     columns: columns,
                     editable: true,
                     url: url,
                     save: url,
-                    pager: "tablePager",
+                    pager: 'tablePager',
                     datafetch: 3
                 },
                 {
-                    view: "pager",
-                    id: "tablePager",
+                    view: 'pager',
+                    id: 'tablePager',
                     size: 3,
                     group: 3,
-                    template: "{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}"
+                    template: '{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}'
                 }
             ]
         }
     }
-})
+});
