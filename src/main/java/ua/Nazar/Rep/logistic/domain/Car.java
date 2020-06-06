@@ -1,6 +1,7 @@
 package ua.Nazar.Rep.logistic.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Car implements ComboListItem {
     private String name;
 
     @ManyToOne
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIdentityReference
+    @JsonSerialize(as=ComboListItem.class)
     private Model model;
 }

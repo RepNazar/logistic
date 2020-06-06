@@ -18,13 +18,20 @@ function buildButton(label, route) {
         value: label,
         width: 100,
         align: 'center',
-        click: function() {
+        click: function () {
             routie(route)
         }
     }
 }
 
-require(['views/main', 'views/cars', 'views/marks', 'views/models', 'util/resourceProxy'],
+require(
+    [
+        'views/main',
+        'views/car/carList',
+        'views/mark/markList',
+        'views/model/modelList',
+        'util/resourceProxy'
+    ],
     function (main, cars, marks, models, resourceProxy) {
         webix.ready(function () {
             webix.ui({

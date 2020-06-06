@@ -19,20 +19,43 @@ define(function () {
                 {
                     id: tableId,
                     view: 'datatable',
+                    columns: columns,
                     autoheight: true,
                     autowidth: true,
-                    columns: columns,
                     editable: true,
                     url: url,
                     save: url,
-                    pager: 'tablePager',
-                    datafetch: 3
+                    pager: tableId + 'TablePager',
+                    datafetch: 10,
+                    on: {
+                        onItemClick: function (id) {
+                            var column = this.config.columns.find(function (col) {
+                                return col.id === id.column
+                            });
+                            var parentTable = this;
+
+                            if(column.dialogUrl) {
+                                require([column.dialogUrl], function (dialogPage) {
+                                    webix.ui({
+                                        view: 'window',
+                                        head: 'Choose an item',
+                                        width: 400,
+                                        position: 'center',
+                                        modal: true,
+                                        body: dialogPage,
+                                        parentTable: parentTable,
+                                        cell: id
+                                    }).show();
+                                })
+                            }
+                        }
+                    }
                 },
                 {
                     view: 'pager',
-                    id: 'tablePager',
-                    size: 3,
-                    group: 3,
+                    id: tableId + 'TablePager',
+                    size: 10,
+                    group: 10,
                     template: '{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}'
                 }
             ]
